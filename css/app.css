@@ -1,0 +1,43 @@
+.wrapper {
+	width: 100%;
+	min-height: 100vh;
+}
+
+.myimg-card {
+	text-align: center;
+	margin-top: 10vh;
+}
+
+.card-panel .card-title {
+	font-weight: 700;
+}
+
+.inline-b {
+	margin: 0px;
+    display: inline-block;
+}
+
+[type="checkbox"]+span:not(.lever) {
+	height: 17px !important;
+}
+
+.collection-header h6 {
+	font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+.collection-item div p + span {
+	display: inline-block;
+}
+
+.collection-item div span + a i {
+	margin-top: 11px;
+}
+ 
+.collection-item  input[type=text]:not(.browser-default) {
+	border-bottom: none;
+}
+
+.ischecked {
+	text-decoration: line-through;
+}
