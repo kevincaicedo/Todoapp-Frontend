@@ -26,10 +26,6 @@
 	      	<div class="card-panel white" id="todo-app">
 		        <span class="card-title">TodoApp Inalambria</span>
 
-		        <div>
-		        	{{ JSON.stringify(lists) }}
-		        </div>
-
 		        <form enctype="multipart/form-data" @submit.prevent="newTask">
 		          	<div class="row">
 				        <div class="input-field col s12">
@@ -41,19 +37,19 @@
 
 		        <ul class="collection with-header">
 			        <li class="collection-header"><h6> Mis actividades </h6></li>
-			        <li class="collection-item" v-for="item in lists">
+			        <li class="collection-item" v-for="(item, index) in lists">
 			        	<div> 
 			        		<p class="inline-b">
 			        			<label>
-			        				<input type="checkbox" :checked="item.finished" @change="finishedTask(item)"/> 
+			        				<input type="checkbox" v-model="item.finished" @change="editTaskTodo(item, 'Actividad Finalizada')"/>
 			        				<span></span>
 			        			</label>
 			        		</p>
 			        		<span> 
 			        			<input v-model="item.name" :class="{ 'ischecked': item.finished }" type="text"
-			        				   @blur="editTaskTodo(item)">
+			        				   @blur="editTaskTodo(item)" @click="preventUpdate(item.name)">
 			        		</span>
-					    	<a href="#!" class="secondary-content" @click="removeTodo(item)"><i class="material-icons">close</i></a>
+					    	<a href="#!" class="secondary-content" @click="removeTodo(item.id, index)"><i class="material-icons">close</i></a>
 					    </div>
 			        </li>
 			    </ul>

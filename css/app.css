@@ -38,6 +38,6 @@
 	border-bottom: none;
 }
 
-.ischecked {
+.ischecked:not(:focus) {
 	text-decoration: line-through;
 }
