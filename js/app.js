@@ -19,6 +19,7 @@ var app = new Vue({
 			// resquest post new todo
 			axios.post("https://protected-plains-91489.herokuapp.com/api/todos", item).then((res) => {
 				M.toast({html: res.data.info})
+				// complete data new item with id
 				item['id'] = res.data.data
 				this.lists.push(item)
             }).catch((error) => {
@@ -28,11 +29,14 @@ var app = new Vue({
 
 		},
 		preventUpdate(name){
+			// data for compare changes
 			this.cacheTemp = name.trim();
 		},
 		editTaskTodo(todo, message=null){
+			// validate if task todo app it has changes for prevent request
 			if(!message && todo.name.trim() === this.cacheTemp)
 				return
+
 			axios.put("https://protected-plains-91489.herokuapp.com/api/todos/"+todo.id, todo).then((res) => {
 				M.toast({html: message ? ( todo.finished ? message : 'Actividad restablecida' ) : res.data.info })
             }).catch((error) => {
@@ -40,6 +44,7 @@ var app = new Vue({
             });
 		},
 		removeTodo(id, index){
+			// remove item of lists of task
 			var item = this.lists.splice( index, 1)
 			axios.delete("https://protected-plains-91489.herokuapp.com/api/todos/"+id).then((res) => {
 				M.toast({html: res.data.info})
@@ -49,9 +54,9 @@ var app = new Vue({
             });
 		},
 		showsTodoList(){
+			// show all task init
 			axios.get("https://protected-plains-91489.herokuapp.com/api/todos").then((res) => {
 				this.lists = res.data.data
-				console.log(this.lists)
             }).catch((error) => {
             	M.toast({html: 'Error al carga tus tareas!'})
             });
